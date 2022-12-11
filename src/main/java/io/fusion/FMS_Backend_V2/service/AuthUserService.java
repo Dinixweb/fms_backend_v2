@@ -1,5 +1,6 @@
 package io.fusion.FMS_Backend_V2.service;
 
+import io.fusion.FMS_Backend_V2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,15 +13,16 @@ import java.util.ArrayList;
 @Service
 public class AuthUserService implements UserDetailsService {
     @Autowired
-    private final StudentRepository studentRepository;
+    private final UserRepository userRepository;
 
-    public AuthUserService(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public AuthUserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails students =  studentRepository.findByUsername(username);
-        return new User(students.getUsername(), students.getPassword(), new ArrayList<>());
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        UserDetails userModel =  userRepository.findByEmail(email);
+        return new User(userModel.getUsername(), userModel.getPassword(), new ArrayList<>());
     }
 }

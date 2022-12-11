@@ -1,6 +1,7 @@
 package io.fusion.FMS_Backend_V2.security;
 
 import io.fusion.FMS_Backend_V2.filter.JwtFilters;
+import io.fusion.FMS_Backend_V2.service.AuthUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

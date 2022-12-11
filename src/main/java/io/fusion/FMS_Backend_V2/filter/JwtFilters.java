@@ -1,6 +1,8 @@
 package io.fusion.FMS_Backend_V2.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.fusion.FMS_Backend_V2.response.TokenExpirationResponse;
+import io.fusion.FMS_Backend_V2.service.AuthUserService;
 import io.fusion.FMS_Backend_V2.utils.JwtUtility;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
@@ -10,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -18,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class JwtFilters {
+public class JwtFilters extends OncePerRequestFilter {
     @Autowired
     JwtUtility jwtUtility;
 
