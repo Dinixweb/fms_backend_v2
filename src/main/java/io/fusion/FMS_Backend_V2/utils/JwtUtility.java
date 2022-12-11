@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Component
-public class jwtUtility {
+public class JwtUtility {
     @Value("${jwt.secret}")
     private String SECRETE;
 
